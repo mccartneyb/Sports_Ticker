@@ -20,19 +20,22 @@ def get_indians_schedule(year):
     indians_schedule = mlb.Schedule('CLE', year)
     mlb_games = []
     for game in indians_schedule:
+        mlb_games.append(game)
         if game.location == 'Home':
             print(f'{game.datetime.strftime("%m/%d")}  {game.opponent_abbr} vs CLE')
         else:
             print(f'{game.datetime.strftime("%m/%d")}  CLE @ {game.opponent_abbr}')
-
+    return mlb_games
 def get_buckeyes_schedule(year):
     teams = Teams()
     OSU = teams('OHIO-STATE')
-
+    ncaaf_games = []
     buckeyes_schedule = ncaaf.Schedule('OHIO-STATE', year)
     for game in buckeyes_schedule:
+        ncaaf_games.append(game)
         game_time = parser.parse(game.date)
         if game.location == 'Home':
             print(f'{game_time.strftime("%m/%d")} {game.time} {game.opponent_name} vs {OSU.name}')
         else:
             print(f'{game_time.strftime("%m/%d")} {game.time} {OSU.name} @ {game.opponent_name}')
+    return ncaaf_games
