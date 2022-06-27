@@ -21,7 +21,9 @@ def get_logos(url, sport):
     for item in list_items:
         team = item.find('img')
         a = item.find('a')
+        #strip the word Logos, and any '/' in the title
         title = str(a["title"]).replace(' Logos','')
+        title = title.replace('/', ' ')
         urllib.request.urlretrieve(team['src'], f'Logos/{sport}/{title}.jpg')
 
 
