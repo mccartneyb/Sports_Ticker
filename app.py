@@ -2,6 +2,10 @@ from flask import Flask, render_template
 import get_schedules
 app = Flask(__name__)
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('page_not_found.html'), 404
+
 @app.route("/")
 def home_page(name='Home'):
     return render_template('home.html', name=name)
