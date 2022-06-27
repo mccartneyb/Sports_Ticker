@@ -1,19 +1,31 @@
+import os
+
 from bs4 import BeautifulSoup
 import requests
 import urllib.request
 
 
-def Get_Logos(url, sport):
+def get_logos(url, sport):
+    #create subdirectory
+    if not os.path.exists(f'Logos/{sport}'):
+        os.makedirs(f'Logos/{sport}')
+    #get soup
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
 
+    #find section and get list items
     section = soup.find("div", id="team")
-    teams = section.findAll('img')
-    for i, team in enumerate(teams):
-        print(sport, team['src'])
-        urllib.request.urlretrieve(team['src'], f'Logos/{sport}_{i}.jpg')
+    list_items = section.findAll('li')
+
+    #for each list item, get img src and title, save src image in sport directory as title
+    for item in list_items:
+        team = item.find('img')
+        a = item.find('a')
+        title = str(a["title"]).replace(' Logos','')
+        urllib.request.urlretrieve(team['src'], f'Logos/{sport}/{title}.jpg')
 
 
+NBA_url = 'https://www.sportslogos.net/teams/list_by_league/6/National_Basketball_Association/NBA/logos/'
 NFL_url = 'https://www.sportslogos.net/teams/list_by_league/7/National_Football_League/NFL/logos/'
 MLB_urls = ['https://www.sportslogos.net/teams/list_by_league/53/American_League/AL/logos/'
     , 'https://www.sportslogos.net/teams/list_by_league/54/National_League/NL/logos/']
@@ -25,10 +37,9 @@ CFB_urls = ['https://www.sportslogos.net/teams/list_by_league/30/NCAA_Division_I
     , 'https://www.sportslogos.net/teams/list_by_league/35/NCAA_Division_I_u-z/NCAA_u-z/logos/']
 
 # Get Logos
-Get_Logos(NFL_url, 'NFL')
-
-for i, url in enumerate(MLB_urls):
-    Get_Logos(url, f'MLB_{i}')
-
-for i, url in enumerate(CFB_urls):
-    Get_Logos(url, f'NCAAF_{i}')
+get_logos(NFL_url, 'NFL')
+get_logos(NBA_url, 'NBA')
+for url in MLB_urls:
+    get_logos(url, 'MLB')
+for url in CFB_urls:
+    get_logos(url, 'NCAAF')
