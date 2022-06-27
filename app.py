@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import get_schedules
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 @app.errorhandler(404)
 def page_not_found(error):

@@ -6,11 +6,18 @@
 </head>
 <body>
     <p><a href="http://127.0.0.1:5000/"><strong>Home</strong></a></p> <br><br>
-    <table style="border-collapse: collapse; width: 100%;" border="1">
+    <table>
         <tbody>
+           <tr>
+                <td>Date</td>
+                <td>Opponent</td>
+                <td>Result</td>
+            </tr>
         {% for game in games %}
             <tr>
-                <td>{{game}}</td>
+                <td>{{game["date"]}}</td>
+                <td>{{game["opponent"]}}</td>
+                <td>{{game["result"]}}</td>
             </tr>
         {% endfor %}
         </tbody>
