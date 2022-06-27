@@ -10,14 +10,20 @@ def page_not_found(error):
 def home_page(name='Home'):
     return render_template('home.html', name=name)
 
+
 @app.route("/browns")
 def browns(name='Cleveland Browns'):
-    return f"<p>{get_schedules.get_browns_schedule(2022)}</p>"
+    games = get_schedules.get_browns_schedule(2022)
+    return render_template('default_schedule.html', name=name, games=games)
+
 
 @app.route("/indians")
 def indians(name='Cleveland Indians'):
-    return f"<p>{get_schedules.get_indians_schedule(2022)}</p>"
+    games = get_schedules.get_indians_schedule(2022)
+    return render_template('default_schedule.html', name=name, games=games)
+
 
 @app.route("/buckeyes")
 def buckeyes(name='The Ohio State Buckeyes'):
-    return f"<p>{get_schedules.get_buckeyes_schedule(2021)}</p>"
+    games = get_schedules.get_buckeyes_schedule(2021)
+    return render_template('default_schedule.html', name=name, games=games)

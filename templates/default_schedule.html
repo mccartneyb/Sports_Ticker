@@ -5,6 +5,16 @@
     <title>{{name}}</title>
 </head>
 <body>
+    <p><a href="http://127.0.0.1:5000/"><strong>Home</strong></a></p> <br><br>
+    <table style="border-collapse: collapse; width: 100%;" border="1">
+        <tbody>
+        {% for game in games %}
+            <tr>
+                <td>{{game}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 </body>
 </html>
