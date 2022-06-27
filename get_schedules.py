@@ -61,7 +61,3 @@ def get_buckeyes_schedule(year):
         # else:
         #     print(f'{game_time.strftime("%m/%d")} {game.time} OSU @ {game.opponent_name}')
     return ncaaf_games
-
-get_browns_schedule(2022)
-get_buckeyes_schedule(2021)
-get_indians_schedule(2022)
