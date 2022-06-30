@@ -16,7 +16,9 @@ def get_browns_schedule(year):
         this_game = {'date': game.date,
                      'opponent': game.opponent_name,
                      'location': game.location,
-                     'result': game.result}
+                     'result': game.result,
+                     'points_for': game.points_scored,
+                     'points_against': game.points_allowed}
 
         nfl_games.append(this_game)
         # if game.location == 'Home':
@@ -35,7 +37,10 @@ def get_indians_schedule(year):
         this_game = {'date': game.date,
                      'opponent': game.opponent_abbr,
                      'location': game.location,
-                     'result': game.result}
+                     'result': game.result,
+                     'points_for': game.runs_scored,
+                     'points_against': game.runs_allowed
+                     }
         mlb_games.append(this_game)
         # if game.location == 'Home':
         #     print(f'{game.datetime.strftime("%m/%d")}  {game.opponent_abbr} vs CLE')
@@ -53,7 +58,10 @@ def get_buckeyes_schedule(year):
         this_game = {'date': game.date,
                      'opponent': game.opponent_name,
                      'location': game.location,
-                     'result': game.result}
+                     'result': game.result,
+                     'points_for': game.points_for,
+                     'points_against': game.points_against
+                     }
         ncaaf_games.append(this_game)
         # game_time = parser.parse(game.date)
         # if game.location == 'Home':
