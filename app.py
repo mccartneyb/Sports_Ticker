@@ -20,6 +20,13 @@ def browns(name='Cleveland Browns'):
     return render_template('default_schedule.html', name=name, games=games, year=year)
 
 
+@app.route("/cavs")
+def cavs(name='Cleveland Cavs'):
+    year = 2022
+    games = get_schedules.get_cavs_schedule(year)
+    return render_template('default_schedule.html', name=name, games=games, year=year)
+
+
 @app.route("/indians")
 def indians(name='Cleveland Indians'):
     year = 2022
